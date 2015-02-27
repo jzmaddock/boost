@@ -64,9 +64,27 @@ __ http://www.boost.org/build/doc/html/bbv2/reference/tools.html
 +-----------+--------------------+-----------------------------+
 |``msvc``   |Microsoft           |                             |
 +-----------+--------------------+-----------------------------+
-|``sun``    |Sun                 |Only very recent versions are|
+|``sun``    |Oracle/Sun          |Only very recent versions are|
 |           |                    |known to work well with      |
-|           |                    |Boost.                       |
+|           |                    |Boost.  Note that the        | 
+|           |                    | Oracle/Sun compiler has a   |
+|           |                    |large number of options which|
+|           |                    |effect binary compatibility: |
+|           |                    |it is vital that the libraries|
+|           |                    |are built with the same options|
+|           |                    |that your appliction will use. |
+|           |                    |In particular be aware that  |
+|           |                    |the default standard library |
+|           |                    |may not work well with Boost,|
+|           |                    |*unless you are building for |
+|           |                    |C++11*. The particular compiler|
+|           |                    |options you need can be injected|
+|           |                    |with the b2 command line options|
+|           |                    |``cxxflags=`` and ``linkflags=``.|
+|           |                    |For example to build with the |
+|           |                    |Apache standard library in    |
+|           |                    |C++03 mode use              |
+|           |                    |``b2 cxxflags=-library=stdcxx4 linkflags=-library=stdcxx4``.|                     |
 +-----------+--------------------+-----------------------------+
 |``vacpp``  |IBM                 |The VisualAge C++ compiler.  |
 +-----------+--------------------+-----------------------------+
